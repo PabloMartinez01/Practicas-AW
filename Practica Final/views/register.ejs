@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  
+  <%- include("links") %>
+
+  <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+
+  <div class="container w-50">
+    <form method="POST" action="/register" class="mt-5 p-5" enctype="multipart/form-data">
+      <div class="row">
+        <div class="container">
+          <img src="img/ucmLogin.png" alt="" class="mx-auto d-block w-50">
+        </div>
+      </div>
+
+      <div class="row align-items-center mb-2">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <label for="inputEmail3">Email</label>
+          <input required type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <label for="nombreMostrar">Nombre a mostrar</label>
+          <input required type="text" class="form-control" id="nombreMostrar" placeholder="Nombre" name="usuario"">
+        </div>      
+      </div>
+
+    
+      <div class="row align-items-center mb-2">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <label required for="password1">Password</label>
+          <input required type="password" class="form-control" id="password1" placeholder="Password" name="password">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <label for="password2">Confirm password</label>
+          <input type="password" class="form-control" id="password2" placeholder="Password" name ="cpassword">
+        </div>      
+      </div>
+      <div class="row align-items-center mb-2">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <label for="selector">Perfil universitario</label>
+          <select onchange="mostrar_ocultar_check()" class="form-select" id="selector" aria-label="Default select example" name="perfil">
+            <option selected value="Alumno">Alumno</option>
+            <option value="PAS">Personal de administracion y servicios</option>
+            <option value="PDI">Personal Docente e Investigador</option>
+            <option value="Antiguo Alumno">Antiguo Alumno</option>
+          </select>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12" id="num_empleado">
+          <label for="numero">Nº Empleado</label>
+          <input required type="text" class="form-control" id="numero" pattern="\d{4}-[a-z]{3}" placeholder="Nº Empleado" name="numero">
+        </div>   
+      </div>
+      <div class="row">
+        <div id="check_tecnico">
+          <div class="form-check">
+            <input class="form-check-input" onclick="mostrar_ocultar_number()" type="checkbox" name="tecnico" value="1" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">Tecnico</label>
+          </div>
+        </div>   
+      </div>
+      <hr>
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <label for="formFile" class="form-label mb-0">Foto de perfil</label>
+          <input  type="file" id="imagen" name="imagen" accept="image/*">
+        </div>  
+      </div>
+      
+      <div class="mt-3">
+        <%- include("flash") %>
+      </div>
+      
+
+      <div class="form-group d-flex justify-content-around align-items-center botones">
+        <a class="btn btn-outline-primary" href="/login" role="button">Iniciar Sesion</a>
+        <button type="submit" class="btn btn-primary p-2">Registrarse</button>
+      </div>
+      
+    </form>
+  </div>
+
+
+  <%- include("scripts") %>
+  
+</body>
+
+</html>
+
+<script>
+
+  $(mostrar_ocultar_check())
+  $(mostrar_ocultar_number())
+
+  function mostrar_ocultar_check(){
+
+    if ($("#selector").prop("value") === "PAS")
+      $("#check_tecnico").show()
+    else{
+      $("#check_tecnico").hide()
+      $("#num_empleado").hide()
+      $("#numero").prop("required", false) 
+    }
+      
+    
+  }
+
+  function mostrar_ocultar_number(){
+    if ($("#flexCheckDefault").prop("checked")){
+      $("#num_empleado").show()
+      $("#numero").prop("required", true)
+    }
+    else{
+      $("#num_empleado").hide()
+      $("#numero").prop("required", false)
+    }
+      
+      
+  }
+
+</script>
+

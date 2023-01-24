@@ -1,0 +1,87 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Añadir tarea</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/nuevoAviso" method="POST">
+
+                <div class="modal-body">
+                    <div class="p-2 d-flex align-items-center form-group">
+                        <label for="selector" class="p-2 align-self-center">Tipo de aviso</label>
+                        <div class="p-2">
+                            <select onchange="mostrarSelectorInciSugeFeli()" class="form-select" id="selectorTipo"
+                                aria-label="Default select example" name="tipo">
+                                <option selected>Selecciona uno</option>
+                                <option value=1>Incidencia</option>
+                                <option value=2>Sugerencia</option>
+                                <option value=3>Felicitacion</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="in-su">
+                        <hr>
+                        <div class="p-2 d-flex align-items-center form-group">
+                            <label for="area" class="align-self-center">Area del aviso</label>
+                            <div class="p-2">
+                                <select class="form-select area" onchange="mostrarDesc()" id="area"
+                                    aria-label="Default select example" name="area">
+                                    <option selected>Selecciona uno</option>
+                                    <% areas.forEach(function(area){ %>
+                                        <option value="<%= area %>">
+                                            <%= area %>
+                                        </option>
+                                        <% }) %>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="felicitacion">
+                        <hr>
+                        <div class="p-2 d-flex align-items-center form-group">
+                            <label for="area" class="align-self-center">Area del aviso</label>
+                            <div class="p-2">
+                                <select class="form-select area" onchange="mostrarDesc()" id="area2"
+                                    aria-label="Default select example" name="area">
+                                    <option selected>Selecciona uno</option>
+                                    <option value="Archivo Universitario">Archivo Universitario</option>
+                                    <option value="Asesoría Jurídica">Asesoría Jurídica</option>
+                                    <option value="Biblioteca">Biblioteca</option>
+                                    <option value="Centro de Información">Centro de Información</option>
+                                    <option value="Departamentos docentes">Departamentos docentes</option>
+                                    <option value="Inspección de Servicios">Inspección de Servicios</option>
+                                    <option value="Oficina de Gestión de Infraestructuras y Mantenimiento">
+                                        Oficina de Gestión de Infraestructuras y Mantenimiento</option>
+                                    <option value="Servicio de Administración">Servicio de Administración</option>
+                                    <option value="Servicios Informáticos">Servicios Informáticos</option>
+                                    <option value="Servicio de Documentación">Servicio de Documentación</option>
+                                    <option value="Servicio de Imprenta">Servicio de Imprenta</option>
+                                    <option value="Servicio de Cafetería">Servicio de Cafetería</option>
+                                    <option value="Toda la Universidad">Toda la Universidad</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="desc">
+                        <hr>
+                        <div class="d-flex form-group">
+                            <label for="message-text" class="col-form-label">Descripción del aviso</label>
+                            <textarea required class="form-control" name="descripcion" id="message-text"
+                                placeholder="Ponga la descripcion de su problema" maxlength="1000"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-success" value="Añadir">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
